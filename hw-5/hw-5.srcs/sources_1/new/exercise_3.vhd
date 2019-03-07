@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date: 03/06/2019 07:10:20 PM
+-- Create Date: 03/06/2019 07:27:26 PM
 -- Design Name: 
--- Module Name: exercise_2 - Behavioral
+-- Module Name: exercise_3 - DataFlow
 -- Project Name: 
 -- Target Devices: 
 -- Tool Versions: 
@@ -31,34 +31,23 @@ use IEEE.STD_LOGIC_1164.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity exercise_2 is
+entity exercise_3 is
     Port (signal A_1, A_2,B_1,B_2,D_1 : in std_logic;
-          signal E_out : out std_logic);
-end exercise_2;
+      signal E_out : out std_logic);
+end exercise_3;
 
-architecture BehavioralCase of exercise_2 is
+architecture DataFlow of exercise_3 is
 
 signal A : std_logic;
 signal B : std_logic;
 signal C : std_logic;
-signal ABC : std_logic_vector(2 downto 0);
 
 begin
-
 A <= A_1 and A_2;
 B <= B_1 or B_2;
 C <= B_2 and (not D_1);
-ABC <= A & B & C;
 
-CaseProcess : process
-begin
-    case ABC is
-        when "000" => E_out <= '0';
-        when others => E_out <= '1';
-    end case;
-end process;
-
-end BehavioralCase;
+E_out <= A or B or C;
 
 
-
+end DataFlow;

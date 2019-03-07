@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date: 03/06/2019 07:10:20 PM
+-- Create Date: 03/06/2019 07:49:03 PM
 -- Design Name: 
--- Module Name: exercise_2 - Behavioral
+-- Module Name: exercise_7Case - BehavioralCase
 -- Project Name: 
 -- Target Devices: 
 -- Tool Versions: 
@@ -31,34 +31,27 @@ use IEEE.STD_LOGIC_1164.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity exercise_2 is
-    Port (signal A_1, A_2,B_1,B_2,D_1 : in std_logic;
-          signal E_out : out std_logic);
-end exercise_2;
+entity exercise_7Case is
+    port( signal A : in std_logic_vector(2 downto 0);
+          signal D : out std_logic_vector(7 downto 0) := (others => '1'));  
+end exercise_7Case;
 
-architecture BehavioralCase of exercise_2 is
-
-signal A : std_logic;
-signal B : std_logic;
-signal C : std_logic;
-signal ABC : std_logic_vector(2 downto 0);
+architecture BehavioralCase of exercise_7Case is
 
 begin
-
-A <= A_1 and A_2;
-B <= B_1 or B_2;
-C <= B_2 and (not D_1);
-ABC <= A & B & C;
-
-CaseProcess : process
+process 
 begin
-    case ABC is
-        when "000" => E_out <= '0';
-        when others => E_out <= '1';
+    case A is
+        when "000" => D <= "11111110";
+        when "001" => D <= "11111101";
+        when "010" => D <= "11111011";
+        when "011" => D <= "11110111";
+        when "100" => D <= "11101111";
+        when "101" => D <= "11011111";
+        when "110" => D <= "10111111";
+        when "111" => D <= "01111111";
     end case;
 end process;
+        
 
 end BehavioralCase;
-
-
-

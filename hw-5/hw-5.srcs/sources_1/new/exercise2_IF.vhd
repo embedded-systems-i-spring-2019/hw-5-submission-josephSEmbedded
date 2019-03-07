@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date: 03/06/2019 07:10:20 PM
+-- Create Date: 03/06/2019 07:31:54 PM
 -- Design Name: 
--- Module Name: exercise_2 - Behavioral
+-- Module Name: exercise2_IF - BehavioralIF
 -- Project Name: 
 -- Target Devices: 
 -- Tool Versions: 
@@ -31,12 +31,11 @@ use IEEE.STD_LOGIC_1164.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity exercise_2 is
+entity exercise2_IF is
     Port (signal A_1, A_2,B_1,B_2,D_1 : in std_logic;
-          signal E_out : out std_logic);
-end exercise_2;
+      signal E_out : out std_logic);end exercise2_IF;
 
-architecture BehavioralCase of exercise_2 is
+architecture BehavioralIf of exercise2_IF is
 
 signal A : std_logic;
 signal B : std_logic;
@@ -50,15 +49,14 @@ B <= B_1 or B_2;
 C <= B_2 and (not D_1);
 ABC <= A & B & C;
 
-CaseProcess : process
+IfProcess : process
 begin
-    case ABC is
-        when "000" => E_out <= '0';
-        when others => E_out <= '1';
-    end case;
+    if (ABC = "000") then
+        E_out <= '0';
+    else 
+        E_out <= '1';
+    end if;
 end process;
 
-end BehavioralCase;
-
-
+end BehavioralIf;
 
